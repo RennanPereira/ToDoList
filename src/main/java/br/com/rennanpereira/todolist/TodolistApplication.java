@@ -11,8 +11,3 @@ public class TodolistApplication {
 	}
 
 }
-
-/*
- * Os controllers e models devem ficar na msm pasta que a aplicação
- * 
- */

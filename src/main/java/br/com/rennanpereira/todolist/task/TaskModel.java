@@ -11,26 +11,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-   /*
-     * ID
-     * Usuário (ID_USUARIO)
-     * Descrição
-     * Título
-     * Data de inicio
-     * Data de término
-     * Prioridade
-     */
 
-@Data //getters e setters
+@Data 
 @Entity(name="tb_tasks")
 public class TaskModel {
 
      @Id
-     @GeneratedValue(generator = "UUID")//gerar id auto.
+     @GeneratedValue(generator = "UUID")
      private UUID id;
      private String description;
 
-     @Column(length = 50)//max-lengh do title
+     @Column(length = 50)
      private String title;
      private LocalDateTime startAt;
      private LocalDateTime endAt;
@@ -39,7 +30,7 @@ public class TaskModel {
      private UUID idUser;
 
      
-     @CreationTimestamp //marca qdo a tarefa foi criada no db
+     @CreationTimestamp
      private LocalDateTime createdAt;
 
      public void setTitle(String title) throws Exception {
@@ -51,8 +42,3 @@ public class TaskModel {
      }
 
 }
-
-/*
- * Tarefas
- * Estrutura da tabela
- */

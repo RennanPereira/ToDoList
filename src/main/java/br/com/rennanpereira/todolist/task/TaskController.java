@@ -28,11 +28,9 @@ public class TaskController {
     @PostMapping("/")
     public ResponseEntity create(@RequestBody TaskModel taskModel, HttpServletRequest request){
         var idUser = request.getAttribute("idUser");
-        taskModel.setIdUser((UUID)idUser);//setar o id da task
+        taskModel.setIdUser((UUID)idUser);
 
-        //validar a data
         var currentDate = LocalDateTime.now();
-        //se a data atual for maior que a data de inicio ou maior que a de encerramento...da erro
         if(currentDate.isAfter(taskModel.getStartAt()) || currentDate.isAfter(taskModel.getEndAt())){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body("A data de início / data de término deve ser maior que a data atual");
@@ -45,8 +43,6 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(task);
     }
 
-    //listagem de tasks
-    //list
     @GetMapping("/")
     public List<TaskModel> list(HttpServletRequest request){
         var idUser = request.getAttribute("idUser");
@@ -54,13 +50,11 @@ public class TaskController {
         return tasks;
     }
 
-    //update
     @PutMapping("/{id}")
     public ResponseEntity update(@RequestBody TaskModel taskModel, @PathVariable UUID id, HttpServletRequest request){
 
         var task = this.taskRepository.findById(id).orElse(null);
 
-        //não permitir alterar tasks inexistentes
         if(task == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
               .body("Tarefa não encontrada");
@@ -69,7 +63,6 @@ public class TaskController {
 
         var idUser = request.getAttribute("idUser");
 
-        //não permitir alterar tasks de usuário diferente
         if(!task.getIdUser().equals(idUser)){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body("Usuário não tem permissão para alterar essa tarefa");

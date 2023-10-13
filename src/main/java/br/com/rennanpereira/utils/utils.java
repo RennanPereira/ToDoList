@@ -15,8 +15,7 @@ public class utils {
     }
     
     public static String[] getNullPropertyNames(Object source){
-        //beanwrapper = interface para acessar propriedades de um objeto
-        //BeanWrapperImpl = implementação da interface
+   
         final BeanWrapper src = new BeanWrapperImpl(source);
 
             PropertyDescriptor[] pds = src.getPropertyDescriptors();

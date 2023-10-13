@@ -11,26 +11,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-//UserModel = Padrão da tabela do database
 
 @Data
-@Entity(name = "tb_users") //nome da tabela
+@Entity(name = "tb_users")
 public class UserModel {
 
     @Id
     @GeneratedValue(generator =  "UUID")
     private UUID id;
-        /*
-     * string (texto)
-     * Integer (num inteiros)
-     * Double (num 0.0000)
-     * Float (num 0.000)
-     * cha (A C)
-     * Date (data)
-     * Void (vazio)
-     */
 
-    @Column(unique = true) //não permite usuário com o mesmo nome
+
+    @Column(unique = true)
     private String username;
     private String name;
     private String password;
@@ -38,7 +29,6 @@ public class UserModel {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    //getters e setters
 
     
 }
